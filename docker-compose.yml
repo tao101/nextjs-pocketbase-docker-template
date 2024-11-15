@@ -2,15 +2,11 @@ version: "3.8"
 
 services:
   nextjs:
-    image: node:20-alpine
-    working_dir: /app
-    command: sh -c "npm install && npm run build && npm start"
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
       - "3000:3000"
-    volumes:
-      - .:/app
-      - node_modules:/app/node_modules
-      - next-cache:/app/.next
     environment:
       - NODE_ENV=production
       - POCKETBASE_URL=http://pocketbase:8090
@@ -35,5 +31,3 @@ services:
 volumes:
   pocketbase_data:
   pocketbase_public:
-  node_modules:
-  next-cache:
