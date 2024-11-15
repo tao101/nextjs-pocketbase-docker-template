@@ -1,0 +1,35 @@
+version: "3.8"
+
+services:
+  nextjs:
+    image: node:20-alpine
+    working_dir: /app
+    command: sh -c "npm install && npm run dev"
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./nextjs-app:/app
+      - node_modules:/app/node_modules
+      - next-cache:/app/.next
+    environment:
+      - NODE_ENV=development
+      - POCKETBASE_URL=http://pocketbase:8080
+    depends_on:
+      - pocketbase
+    env_file:
+      - ./nextjs-app/.env.development
+
+  pocketbase:
+    image: ghcr.io/muchobien/pocketbase:latest
+    ports:
+      - "8080:8080"
+    volumes:
+      - pocketbase_data:/pb_data
+      - pocketbase_public:/pb_public
+    restart: unless-stopped
+
+volumes:
+  pocketbase_data:
+  pocketbase_public:
+  node_modules:
+  next-cache:
