@@ -3,4 +3,7 @@
 node_modules
 .next
 .env*
-README.md 
+README.md
+docker-compose*
+Dockerfile
+.dockerignore 
