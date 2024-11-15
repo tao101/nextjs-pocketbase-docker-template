@@ -1,4 +1,11 @@
-# Project Title
+# Important
+⚠️ **Note**: This repository does not include a Next.js application. After cloning, you must create a new Next.js application in the root folder:
+
+- This project is a simple Next.js application with a PocketBase backend.
+- It is containerized with Docker for both development and production environments.
+- The development environment includes hot-reloading for Next.js and persistent volumes for node_modules, Next.js cache, PocketBase data, and PocketBase public files.
+- The production setup uses a multi-stage Dockerfile for optimal image size and includes health checks for the PocketBase service.
+- Both services are configured with `restart: unless-stopped`.
 
 ## Description
 
